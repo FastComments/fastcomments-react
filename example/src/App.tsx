@@ -4,7 +4,7 @@ import { ExampleComponent } from 'fastcomments-react'
 import 'fastcomments-react/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <ExampleComponent text="what" />
 }
 
 export default App
