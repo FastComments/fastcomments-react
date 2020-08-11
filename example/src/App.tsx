@@ -1,10 +1,8 @@
 import React from 'react'
-
-import { ExampleComponent } from 'fastcomments-react'
-import 'fastcomments-react/dist/index.css'
+import {FastCommentsCommentWidget} from "fastcomments-react";
 
 const App = () => {
-  return <ExampleComponent text="what" />
+  return <FastCommentsCommentWidget tenantId="demo" />
 }
 
 export default App

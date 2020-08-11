@@ -15,12 +15,12 @@ npm install --save fastcomments-react
 ```tsx
 import React, { Component } from 'react'
 
-import MyComponent from 'fastcomments-react'
+import FastCommentsCommentWidget from 'fastcomments-react'
 import 'fastcomments-react/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <FastCommentsCommentWidget />
   }
 }
 ```

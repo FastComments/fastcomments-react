@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { FastCommentsCommentWidget } from '.'
 
-describe('ExampleComponent', () => {
+describe('FastCommentsCommentWidget', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(FastCommentsCommentWidget).toBeTruthy()
   })
 })
