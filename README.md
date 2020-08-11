@@ -20,9 +20,9 @@ yarn add fastcomments-react
 
 ## Usage
 
-#### FastCommentsCommentWidget
+### The Main Widget Component
 
-FastCommentsCommentWidget contains the live FastComments comment widget.
+The FastCommentsCommentWidget component contains the live FastComments comment widget.
 
 Replace "demo" below with your "tenantId" - available [here](https://fastcomments.com/auth/my-account/get-acct-code) in the FastComments admin area.
 
