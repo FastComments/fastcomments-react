@@ -3,14 +3,13 @@ import {isEqual} from 'lodash';
 
 interface FastCommentsConfig {
   text: string,
-  widgetId?: string,
 }
 
 enum LoadStatus {
   Started,
   Done,
   Error
-};
+}
 
 interface FastCommentsState {
   status: LoadStatus,
@@ -23,7 +22,7 @@ export class ExampleComponent extends React.Component<FastCommentsConfig, FastCo
     super(props);
     this.state = {
       status: LoadStatus.Started,
-      widgetId: props.widgetId || 'fastcomments-widget-' + new Date()
+      widgetId: `fastcomments-widget-${Math.random()}-${Date.now()}`
     };
   }
 
