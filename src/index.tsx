@@ -9,9 +9,9 @@ export interface FastCommentsSSO {
   /** The timestamp of when the verificationHash was created. */
   timestamp: string
   /** The logout URL for the user. If you define the SSO configuration, but not this, the logout link won't be shown. */
-  logoutURL: string
+  logoutURL?: string
   /** The login URL for the user, which will show if they try to comment and they are not authenticated. */
-  loginURL: string
+  loginURL?: string
 }
 
 export interface FastCommentsConfig {
