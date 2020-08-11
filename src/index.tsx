@@ -21,7 +21,7 @@ export interface FastCommentsConfig {
   urlId?: string
   /** URL that represents the page, if you don't want to tie to the page url in the browser. Must always be a URL. */
   url?: string
-  /** Whether or not the comment widget is on a page or element with a dark background. */
+  /** Whether or not the comment widget is on a page or element with a dark background. If undefined the widget will try to determine the background color itself. */
   hasDarkBackground?: boolean
   /** Title of the page that the widget is on. */
   pageTitle?: string

@@ -1,29 +1,47 @@
 # fastcomments-react
 
-> A React library for FastComments
+> A React library for FastComments, a fast and developer friendly comment system.
 
 [![NPM](https://img.shields.io/npm/v/fastcomments-react.svg)](https://www.npmjs.com/package/fastcomments-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+## Installation
+
+### NPM
 
 ```bash
 npm install --save fastcomments-react
 ```
 
+### Yarn
+
+```bash
+yarn add fastcomments-react
+```
+
 ## Usage
+
+#### FastCommentsCommentWidget
+
+FastCommentsCommentWidget contains the live FastComments comment widget.
+
+Replace "demo" below with your "tenantId" - available [here](https://fastcomments.com/auth/my-account/get-acct-code) in the FastComments admin area.
+
+The widget supports a lot of options - see FastCommentsConfig in src/index.tsx.
 
 ```tsx
 import React, { Component } from 'react'
 
 import FastCommentsCommentWidget from 'fastcomments-react'
-import 'fastcomments-react/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <FastCommentsCommentWidget />
+    return <FastCommentsCommentWidget tenantId="demo" />
   }
 }
 ```
+
+## Contributing
+Please checkout our [contribution guidelines](CONTRIBUTING.md) before starting on a change. Remember to communicate first!
 
 ## License
 
