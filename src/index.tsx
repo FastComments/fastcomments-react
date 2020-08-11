@@ -61,6 +61,7 @@ export interface FastCommentsConfig {
 
 enum LoadStatus {
   Started,
+  ScriptLoaded,
   Done,
   Error
 }
@@ -106,35 +107,47 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
   }
 
   async loadInstance() {
-    switch (this.state.status) {
-      case LoadStatus.Started:
-        try {
-          // @ts-ignore
-          if (window && !window.FastCommentsUI) {
-            await this.insertScript('https://cdn.fastcomments.com/js/embed.min.js', 'fastcomments-widget-script', window.document.body);
+    return new Promise(async (resolve, reject) => {
+      switch (this.state.status) {
+        case LoadStatus.Started:
+          try {
+            // @ts-ignore
+            if (window && !window.FastCommentsUI) {
+              await this.insertScript('https://cdn.fastcomments.com/js/embed.min.js', 'fastcomments-widget-script', window.document.body);
+            }
+            this.setState({
+              status: LoadStatus.ScriptLoaded
+            });
+            this.forceUpdate();
+            resolve();
+          } catch (e) {
+            console.error('FastComments Script Load Failure', e);
+            this.setState({
+              status: LoadStatus.Error
+            });
+            this.forceUpdate();
+            reject();
           }
+          break;
+        case LoadStatus.ScriptLoaded:
+          // @ts-ignore
+          window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
           this.setState({
             status: LoadStatus.Done
           });
-          this.forceUpdate();
-        } catch (e) {
-          console.error('FastComments Script Load Failure', e);
-          this.setState({
-            status: LoadStatus.Error
-          });
-          this.forceUpdate();
-        }
-        break;
-      case LoadStatus.Done:
-        // @ts-ignore
-        window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
-        break;
-    }
+          resolve();
+          break;
+        default:
+          resolve();
+          break;
+      }
+    });
   }
 
   render() {
     return (
-      <div id={this.state.widgetId}>{this.state.status === LoadStatus.Error ? 'Oh no! The comments section could not be loaded.' : ''}</div>
+      <div
+        id={this.state.widgetId}>{this.state.status === LoadStatus.Error ? 'Oh no! The comments section could not be loaded.' : ''}</div>
     )
   }
 }
