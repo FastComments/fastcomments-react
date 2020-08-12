@@ -63,7 +63,8 @@ enum LoadStatus {
   Started,
   ScriptLoaded,
   Done,
-  Error
+  Error,
+  Reset
 }
 
 interface FastCommentsState {
@@ -85,12 +86,16 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
     return this.loadInstance();
   }
 
-  shouldComponentUpdate(nextState: FastCommentsConfig) {
-    return isEqual(this.state, nextState);
+  shouldComponentUpdate(nextProps: FastCommentsConfig) {
+    return !isEqual(this.props, nextProps);
   }
 
   componentDidUpdate() {
-    return this.loadInstance();
+    if (this.state.status === LoadStatus.ScriptLoaded) {
+      return this.reset();
+    } else {
+      return this.loadInstance();
+    }
   }
 
   async insertScript(src: string, id: string, parentElement: Element) {
@@ -142,6 +147,15 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
           break;
       }
     });
+  }
+
+  reset() {
+    const widget = document.getElementById(this.state.widgetId);
+    if (widget) {
+      widget.innerHTML = '';
+    }
+    // @ts-ignore
+    window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
   }
 
   render() {
