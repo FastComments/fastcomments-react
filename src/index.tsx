@@ -135,8 +135,7 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
           }
           break;
         case LoadStatus.ScriptLoaded:
-          // @ts-ignore
-          window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
+          this.instantiateWidget();
           this.setState({
             status: LoadStatus.Done
           });
@@ -154,6 +153,10 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
     if (widget) {
       widget.innerHTML = '';
     }
+    this.instantiateWidget();
+  }
+
+  instantiateWidget() {
     // @ts-ignore
     window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
   }
