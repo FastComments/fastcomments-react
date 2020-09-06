@@ -74,7 +74,14 @@ interface FastCommentsState {
   widgetId: string
 }
 
+interface WidgetInstance {
+  destroy: Function,
+  update: Function
+}
+
 export class FastCommentsCommentWidget extends React.Component<FastCommentsConfig, FastCommentsState> {
+
+  lastWidgetInstance: WidgetInstance|null;
 
   constructor(props: FastCommentsConfig) {
     super(props);
@@ -82,6 +89,7 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
       status: LoadStatus.Started,
       widgetId: `fastcomments-widget-${Math.random()}-${Date.now()}`
     };
+    this.lastWidgetInstance = null;
   }
 
   componentDidMount() {
@@ -151,16 +159,16 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
   }
 
   reset() {
-    const widget = document.getElementById(this.state.widgetId);
-    if (widget) {
-      widget.innerHTML = '';
+    if (this.lastWidgetInstance) {
+      this.lastWidgetInstance.update(this.props);
+    } else {
+      this.instantiateWidget();
     }
-    this.instantiateWidget();
   }
 
   instantiateWidget() {
     // @ts-ignore
-    window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
+    this.lastWidgetInstance = window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
   }
 
   render() {
