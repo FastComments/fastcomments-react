@@ -1,6 +1,6 @@
 {
   "name": "fastcomments-react",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A React library for FastComments",
   "author": "winrid",
   "license": "MIT",
@@ -51,6 +51,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
+    "fastcomments-typescript": "https://github.com/FastComments/fastcomments-typescript#main",
     "gh-pages": "^2.2.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
