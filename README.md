@@ -31,7 +31,7 @@ The widget supports a lot of options - see FastCommentsConfig in src/index.tsx.
 ```tsx
 import React, { Component } from 'react'
 
-import FastCommentsCommentWidget from 'fastcomments-react'
+import {FastCommentsCommentWidget} from 'fastcomments-react'
 
 class Example extends Component {
   render() {
