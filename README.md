@@ -40,6 +40,10 @@ class Example extends Component {
 }
 ```
 
+### Updating The Current Page (For SPAs)
+To update the page/article the comment thread is tied to you must update the configuration parameters "urlId" and "url".
+See the example and explanation [here](https://github.com/FastComments/fastcomments-react/blob/master/example/src/PaginatedApp.tsx).
+
 ## Contributing
 Please checkout our [contribution guidelines](CONTRIBUTING.md) before starting on a change. Remember to communicate first!
 
