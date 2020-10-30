@@ -21,7 +21,7 @@ interface WidgetInstance {
 
 export class FastCommentsCommentWidget extends React.Component<FastCommentsConfig, FastCommentsState> {
 
-  lastWidgetInstance: WidgetInstance|null;
+  lastWidgetInstance: WidgetInstance | null;
 
   constructor(props: FastCommentsConfig) {
     super(props);
@@ -107,8 +107,11 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
   }
 
   instantiateWidget() {
-    // @ts-ignore
-    this.lastWidgetInstance = window.FastCommentsUI(document.getElementById(this.state.widgetId), this.props);
+    const element = document.getElementById(this.state.widgetId);
+    if (element) {
+      // @ts-ignore
+      this.lastWidgetInstance = window.FastCommentsUI(element, this.props);
+    }
   }
 
   render() {
