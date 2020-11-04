@@ -11,7 +11,7 @@ enum LoadStatus {
 
 interface FastCommentsState {
   status: LoadStatus,
-  widgetId: string
+  widgetId: string | null
 }
 
 interface WidgetInstance {
@@ -27,12 +27,16 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
     super(props);
     this.state = {
       status: LoadStatus.Started,
-      widgetId: `fastcomments-widget-${Math.random()}-${Date.now()}`
+      widgetId: null,
     };
-    this.lastWidgetInstance = null;
   }
 
   componentDidMount() {
+    this.setState({
+      status: LoadStatus.Started,
+      widgetId: `fastcomments-widget-${Math.random()}-${Date.now()}`
+    });
+    this.lastWidgetInstance = null;
     return this.loadInstance();
   }
 
@@ -107,17 +111,20 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsConfi
   }
 
   instantiateWidget() {
-    const element = document.getElementById(this.state.widgetId);
-    if (element) {
-      // @ts-ignore
-      this.lastWidgetInstance = window.FastCommentsUI(element, this.props);
+    if (this.state.widgetId) {
+      const element = document.getElementById(this.state.widgetId);
+      if (element) {
+        // @ts-ignore
+        this.lastWidgetInstance = window.FastCommentsUI(element, this.props);
+      }
     }
   }
 
   render() {
-    return (
-      <div
-        id={this.state.widgetId}>{this.state.status === LoadStatus.Error ? 'Oh no! The comments section could not be loaded.' : ''}</div>
+    return (<div>
+        {this.state.widgetId ? <div
+          id={this.state.widgetId}>{this.state.status === LoadStatus.Error ? 'Oh no! The comments section could not be loaded.' : ''}</div> : ''}
+      </div>
     )
   }
 }
