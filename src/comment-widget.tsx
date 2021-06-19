@@ -72,7 +72,7 @@ export class FastCommentsCommentWidget extends React.Component<FastCommentsComme
           try {
             // @ts-ignore
             if (window && !window.FastCommentsUI) {
-              await this.insertScript('https://cdn.fastcomments.com/js/embed.min.js', 'fastcomments-widget-script', window.document.body);
+              await this.insertScript('https://cdn.fastcomments.com/js/embed-v2.min.js', 'fastcomments-widget-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded
