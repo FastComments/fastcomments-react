@@ -18,6 +18,10 @@ npm install --save fastcomments-react
 yarn add fastcomments-react
 ```
 
+## Examples
+
+You'll find examples for various use cases (dark mode, pagination, etc) in the examples folder. Each example can be setup with `npm install` and started with `npm run start`.
+
 ## Usage
 
 ### The Main Widget Component
@@ -42,7 +46,7 @@ class Example extends Component {
 
 ### Updating The Current Page (For SPAs)
 To update the page/article the comment thread is tied to you must update the configuration parameters "urlId" and "url".
-See the example and explanation [here](https://github.com/FastComments/fastcomments-react/blob/master/example/src/PaginatedApp.tsx).
+See the example and explanation [here](https://github.com/FastComments/fastcomments-react/blob/master/examples/example-paginated/src/PaginatedApp.tsx).
 
 ### The Comment Count Widget
 
