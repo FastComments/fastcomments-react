@@ -35,7 +35,7 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
     console.log('refs', this.refs);
     this.setState({
       status: LoadStatus.Started,
-      widgetId: `fastcomments-collab-chat-widget-${Math.random()}-${Date.now()}`
+      widgetId: `fastcomments-live-chat-widget-${Math.random()}-${Date.now()}`
     });
     this.lastWidgetInstance = null;
     return this.loadInstance();
@@ -72,8 +72,8 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
         case LoadStatus.Started:
           try {
             // @ts-ignore
-            if (window && !window.FastCommentsCollabChat) {
-              await this.insertScript('https://cdn.fastcomments.com/js/embed-collab-chat.min.js', 'fastcomments-collab-chat-script', window.document.body);
+            if (window && !window.FastCommentsLiveChat) {
+              await this.insertScript('https://cdn.fastcomments.com/js/embed-live-chat.min.js', 'fastcomments-live-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded
@@ -116,7 +116,7 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
       const element = document.getElementById(this.state.widgetId);
       if (element) {
         // @ts-ignore
-        this.lastWidgetInstance = window.FastCommentsCollabChat(element, this.props);
+        this.lastWidgetInstance = window.FastCommentsLiveChat(element, this.props);
       }
     }
   }
