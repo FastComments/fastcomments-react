@@ -39,7 +39,7 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
   componentDidMount() {
     this.setState({
       status: LoadStatus.Started,
-      widgetId: `fastcomments-collab-chat-widget-${Math.random()}-${Date.now()}`
+      widgetId: `fastcomments-image-chat-widget-${Math.random()}-${Date.now()}`
     });
     this.lastWidgetInstance = null;
     return this.loadInstance();
@@ -77,7 +77,7 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
           try {
             // @ts-ignore
             if (window && !window.FastCommentsImageChat) {
-              await this.insertScript('https://cdn.fastcomments.com/js/embed-collab-chat.min.js', 'fastcomments-collab-chat-script', window.document.body);
+              await this.insertScript('https://cdn.fastcomments.com/js/embed-image-chat.min.js', 'fastcomments-image-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded
