@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {isEqual} from 'lodash';
 import {FastCommentsImageChatWidgetConfig} from "fastcomments-typescript";
+import {MutableRefObject} from "react";
 
 enum LoadStatus {
   Started,
@@ -19,11 +20,15 @@ interface WidgetInstance {
   update: Function
 }
 
-export class FastCommentsImageChatWidget extends React.Component<FastCommentsImageChatWidgetConfig, FastCommentsState> {
+export interface FastCommentsImageChatWidgetConfigReact extends FastCommentsImageChatWidgetConfig {
+  targetRef: MutableRefObject<any>;
+}
+
+export class FastCommentsImageChatWidget extends React.Component<FastCommentsImageChatWidgetConfigReact, FastCommentsState> {
 
   lastWidgetInstance: WidgetInstance | null;
 
-  constructor(props: FastCommentsImageChatWidgetConfig) {
+  constructor(props: FastCommentsImageChatWidgetConfigReact) {
     super(props);
     this.state = {
       status: LoadStatus.Started,
@@ -32,7 +37,6 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
   }
 
   componentDidMount() {
-    console.log('refs', this.refs);
     this.setState({
       status: LoadStatus.Started,
       widgetId: `fastcomments-collab-chat-widget-${Math.random()}-${Date.now()}`
@@ -41,7 +45,7 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
     return this.loadInstance();
   }
 
-  shouldComponentUpdate(nextProps: FastCommentsImageChatWidgetConfig) {
+  shouldComponentUpdate(nextProps: FastCommentsImageChatWidgetConfigReact) {
     return !isEqual(this.props, nextProps);
   }
 
@@ -72,7 +76,7 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
         case LoadStatus.Started:
           try {
             // @ts-ignore
-            if (window && !window.FastCommentsCollabChat) {
+            if (window && !window.FastCommentsImageChat) {
               await this.insertScript('https://cdn.fastcomments.com/js/embed-collab-chat.min.js', 'fastcomments-collab-chat-script', window.document.body);
             }
             this.setState({
@@ -113,10 +117,14 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
 
   instantiateWidget() {
     if (this.state.widgetId) {
-      const element = document.getElementById(this.state.widgetId);
-      if (element) {
+      const element = this.props.targetRef;
+      if (element && element.current) {
+        const clonedProps = {
+          ...this.props
+        };
+        delete clonedProps.targetRef;
         // @ts-ignore
-        this.lastWidgetInstance = window.FastCommentsCollabChat(element, this.props);
+        this.lastWidgetInstance = window.FastCommentsImageChat(element.current, clonedProps);
       }
     }
   }
