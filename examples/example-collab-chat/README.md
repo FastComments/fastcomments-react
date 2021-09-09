@@ -1,6 +1,6 @@
 ### About
 
-This is an example of FastComments in an app that uses pagination.
+FastComments Collab Chat allows adding inline comments to text.
 
 This is linked to the fastcomments-react package in the parent directory for development purposes.
 

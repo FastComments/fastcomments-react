@@ -1,6 +1,7 @@
 ### About
 
-This is an example of FastComments in an app that uses pagination.
+FastComments Live Chat is a version of the FastComments commenting widget customized to have a "live chat" style
+interface.
 
 This is linked to the fastcomments-react package in the parent directory for development purposes.
 

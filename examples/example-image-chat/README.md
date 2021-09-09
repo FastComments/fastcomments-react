@@ -1,6 +1,6 @@
 ### About
 
-This is an example of FastComments in an app that uses pagination.
+FastComments Image Chat adds discussions to images; users can select parts of an image to discuss it.
 
 This is linked to the fastcomments-react package in the parent directory for development purposes.
 
