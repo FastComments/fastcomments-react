@@ -63,7 +63,7 @@ import {FastCommentsCommentCountWidget} from 'fastcomments-react'
 
 class Example extends Component {
   render() {
-    return <FastCommentsCommentCountWidget tenantId="demo" />
+    return <FastCommentsCommentCountWidget tenantId="demo" urlId="https://example.com/some-page-or-id" />
   }
 }
 ```
