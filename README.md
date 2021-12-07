@@ -68,6 +68,10 @@ class Example extends Component {
 }
 ```
 
+### Native
+
+For React Native, see [fastcomments-react-native](https://github.com/FastComments/fastcomments-react-native).
+
 ## Contributing
 Please checkout our [contribution guidelines](CONTRIBUTING.md) before starting on a change. Remember to communicate first!
 
