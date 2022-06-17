@@ -67,13 +67,14 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
   }
 
   async loadInstance() {
-    return new Promise(async (resolve, reject) => {
+    return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
         case LoadStatus.Started:
           try {
             // @ts-ignore
             if (window && !window.FastCommentsLiveChat) {
-              await this.insertScript('https://cdn.fastcomments.com/js/embed-live-chat.min.js', 'fastcomments-live-chat-script', window.document.body);
+              const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/embed-live-chat.min.js' : 'https://cdn.fastcomments.com/js/embed-live-chat.min.js';
+              await this.insertScript(src, 'fastcomments-live-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded

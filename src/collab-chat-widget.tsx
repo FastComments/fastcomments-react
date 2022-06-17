@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {isEqual} from 'lodash';
+import {isEqual, omit} from 'lodash';
 import {FastCommentsCollabChatWidgetConfig} from "fastcomments-typescript";
 import {MutableRefObject} from "react";
 
@@ -71,13 +71,14 @@ export class FastCommentsCollabChatWidget extends React.Component<FastCommentsCo
   }
 
   async loadInstance() {
-    return new Promise(async (resolve, reject) => {
+    return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
         case LoadStatus.Started:
           try {
             // @ts-ignore
             if (window && !window.FastCommentsCollabChat) {
-              await this.insertScript('https://cdn.fastcomments.com/js/embed-collab-chat.min.js', 'fastcomments-collab-chat-script', window.document.body);
+              const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/embed-collab-chat.min.js' : 'https://cdn.fastcomments.com/js/embed-collab-chat.min.js';
+              await this.insertScript(src, 'fastcomments-collab-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded
@@ -120,9 +121,8 @@ export class FastCommentsCollabChatWidget extends React.Component<FastCommentsCo
       const element = this.props.targetRef;
       if (element && element.current) {
         const clonedProps = {
-          ...this.props
+          ...omit(this.props, 'targetRef')
         };
-        delete clonedProps.targetRef;
         // @ts-ignore
         this.lastWidgetInstance = window.FastCommentsCollabChat(element.current, clonedProps);
       }

@@ -67,13 +67,14 @@ export class FastCommentsCommentCountWidget extends React.Component<FastComments
   }
 
   async loadInstance() {
-    return new Promise(async (resolve, reject) => {
+    return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
         case LoadStatus.Started:
           try {
             // @ts-ignore
             if (window && !window.FastCommentsUI) {
-              await this.insertScript('https://cdn.fastcomments.com/js/widget-comment-count.min.js', 'fastcomments-count-widget-script', window.document.body);
+              const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/widget-comment-count.min.js' : 'https://cdn.fastcomments.com/js/widget-comment-count.min.js';
+              await this.insertScript(src, 'fastcomments-count-widget-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded

@@ -48,6 +48,11 @@ class Example extends Component {
 To update the page/article the comment thread is tied to you must update the configuration parameters "urlId" and "url".
 See the example and explanation [here](https://github.com/FastComments/fastcomments-react/blob/master/examples/example-paginated/src/PaginatedApp.tsx).
 
+### Account Region (ATTENTION: EU Customers)
+
+If you're in the EU, you'll want to tell the client widgets what region you are in. See [examples/example-eu](/examples/example-eu/src/App.tsx);
+Otherwise, you do not have to define `region`.
+
 ### The Comment Count Widget
 
 The FastCommentsCommentCountWidget component contains the live FastComments comment count widget.
