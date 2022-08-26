@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FastCommentsCommentWidget} from 'fastcomments-react';
 
 const App = () => {
-  return <FastCommentsCommentWidget tenantId="demo" />
+  const [myPageId, _setPageId] = useState('some-page-id');
+  return <FastCommentsCommentWidget tenantId="demo" urlId={myPageId} />
 }
 
 export default App

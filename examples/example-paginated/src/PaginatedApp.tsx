@@ -36,7 +36,7 @@ const PaginatedApp = () => {
       {/* We update "urlId" because this is the identifier for the page. It can be a URL, or some kind of id. */}
       {/* We update "url" so that links to the comment thread work. */}
       {/* Note that we're using a real tenant id here, so that we can demo the pagination. */}
-      <FastCommentsCommentWidget tenantId="nYrnfYEv" urlId={window.location.href} url={window.location.href}/>
+      <FastCommentsCommentWidget tenantId="demo" urlId={window.location.href} url={window.location.href}/>
     </div>
   )
 }

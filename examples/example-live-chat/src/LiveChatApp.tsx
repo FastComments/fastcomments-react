@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FastCommentsLiveChatWidget} from 'fastcomments-react';
 
 const LiveChatApp = () => {
-  return <FastCommentsLiveChatWidget tenantId="demo" urlId="react-demo-live-chat" />
+  const [myPageId, _setPageId] = useState('react-demo-live-chat');
+  return <FastCommentsLiveChatWidget tenantId="demo" urlId={myPageId} />
 }
 
 export default LiveChatApp

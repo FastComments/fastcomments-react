@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {FastCommentsCommentCountWidget} from "fastcomments-react";
 
 const CommentCountApp = () => {
+  const [myPageId, _setPageId] = useState('https://example.com/some-page-or-id');
   return (
-    <FastCommentsCommentCountWidget tenantId="demo" urlId="https://example.com/some-page-or-id" />
+    <FastCommentsCommentCountWidget tenantId="demo" urlId={myPageId} />
   )
 }
 
