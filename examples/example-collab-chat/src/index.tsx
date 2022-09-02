@@ -1,7 +1,7 @@
 import './index.css'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import CollabChatApp from './CollabChatApp'
+import App from './CollabChatApp'
+import {createRoot} from "react-dom/client";
 
-ReactDOM.render(<CollabChatApp />, document.getElementById('root'))
+createRoot(document.getElementById('root')!).render(<App />);

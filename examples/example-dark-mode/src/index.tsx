@@ -1,7 +1,7 @@
 import './index.css'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import DarkModeApp from './DarkModeApp'
+import App from './DarkModeApp'
+import {createRoot} from "react-dom/client";
 
-ReactDOM.render(<DarkModeApp />, document.getElementById('root'))
+createRoot(document.getElementById('root')!).render(<App />);

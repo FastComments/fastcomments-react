@@ -1,7 +1,7 @@
 import './index.css'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import PaginatedApp from './PaginatedApp'
+import App from './PaginatedApp'
+import {createRoot} from "react-dom/client";
 
-ReactDOM.render(<PaginatedApp />, document.getElementById('root'))
+createRoot(document.getElementById('root')!).render(<App />);

@@ -1,7 +1,7 @@
 import './index.css'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import CommentCountApp from './CommentCountApp'
+import App from './CommentCountApp'
+import {createRoot} from "react-dom/client";
 
-ReactDOM.render(<CommentCountApp />, document.getElementById('root'))
+createRoot(document.getElementById('root')!).render(<App />);

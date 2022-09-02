@@ -1,7 +1,7 @@
 import './index.css'
 
 import React from 'react'
-import ReactDOM from 'react-dom'
-import ImageChatApp from './ImageChatApp'
+import App from './ImageChatApp'
+import {createRoot} from "react-dom/client";
 
-ReactDOM.render(<ImageChatApp />, document.getElementById('root'))
+createRoot(document.getElementById('root')!).render(<App />);
