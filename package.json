@@ -1,6 +1,6 @@
 {
   "name": "fastcomments-react",
-  "version": "2.3.3",
+  "version": "3.0.0",
   "description": "A React library for FastComments",
   "author": "winrid",
   "license": "MIT",
@@ -50,7 +50,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^5.0.0",
-    "fastcomments-typescript": "^1.6.24",
+    "fastcomments-typescript": "^2.0.0",
     "gh-pages": "^4.0.0",
     "lodash": "^4.17.19",
     "microbundle-crl": "^0.13.10",
@@ -59,7 +59,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^3.4.1",
-    "typescript": "4.2"
+    "typescript": "^4.8.2"
   },
   "files": [
     "dist"
