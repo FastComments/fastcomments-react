@@ -121,7 +121,9 @@ export class FastCommentsUserActivityFeedWidget extends React.Component<FastComm
       const element = document.getElementById(this.state.widgetId);
       if (element) {
         // @ts-ignore
-        this.lastWidgetInstance = window.FastCommentsUserActivity(element, this.props);
+        window.FastCommentsUserActivity(element, this.props, (newInstance) => {
+          this.lastWidgetInstance = newInstance;
+        });
       }
     }
   }

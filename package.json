@@ -1,6 +1,6 @@
 {
   "name": "fastcomments-react",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A React library for FastComments",
   "author": "winrid",
   "license": "MIT",
@@ -18,8 +18,6 @@
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
@@ -58,7 +56,6 @@
     "prettier": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^3.4.1",
     "typescript": "^4.8.2"
   },
   "files": [
