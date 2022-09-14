@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import CSS from 'csstype';
 import {FastCommentsCommentWidget} from "fastcomments-react";
 

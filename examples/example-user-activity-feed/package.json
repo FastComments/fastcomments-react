@@ -1,5 +1,5 @@
 {
-  "name": "fastcomments-react-example-simple-sso",
+  "name": "fastcomments-react-example-user-activity-feed",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
@@ -25,9 +25,6 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

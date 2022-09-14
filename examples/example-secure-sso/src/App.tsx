@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {FastCommentsCommentWidget} from 'fastcomments-react';
 import {FastCommentsSSO} from 'fastcomments-typescript/src/fast-comments-comment-widget-config';
 

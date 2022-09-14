@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {FastCommentsLiveChatWidget} from 'fastcomments-react';
 
 const LiveChatApp = () => {
