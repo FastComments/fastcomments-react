@@ -110,7 +110,7 @@ export class FastCommentsUserActivityFeedWidget extends React.Component<FastComm
 
   reset() {
     if (this.lastWidgetInstance) {
-      this.lastWidgetInstance.update(this.props);
+      this.lastWidgetInstance.update({...this.props});
     } else {
       this.instantiateWidget();
     }
@@ -121,8 +121,12 @@ export class FastCommentsUserActivityFeedWidget extends React.Component<FastComm
       const element = document.getElementById(this.state.widgetId);
       if (element) {
         // @ts-ignore
-        window.FastCommentsUserActivity(element, this.props, (newInstance) => {
-          this.lastWidgetInstance = newInstance;
+        window.FastCommentsUserActivity(element, {...this.props}, (error, newInstance) => {
+          if (error) {
+            console.error('FastComments User Activity Load Failure', error);
+          } else {
+            this.lastWidgetInstance = newInstance;
+          }
         });
       }
     }
