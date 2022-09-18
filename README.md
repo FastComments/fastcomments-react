@@ -28,7 +28,7 @@ You'll find examples for various use cases (dark mode, pagination, etc) in the e
 
 The FastCommentsCommentWidget component contains the live FastComments comment widget.
 
-Replace "demo" below with your "tenantId" - available [here](https://fastcomments.com/auth/my-account/get-acct-code) in the FastComments admin area.
+Replace "demo" below with your "tenantId" - available [here](https://fastcomments.com/auth/my-account/api) in the FastComments admin area.
 
 The widget supports a lot of options - see FastCommentsCommentWidgetConfig in src/index.tsx.
 
@@ -57,7 +57,7 @@ Otherwise, you do not have to define `region`.
 
 The FastCommentsCommentCountWidget component contains the live FastComments comment count widget.
 
-Replace "demo" below with your "tenantId" - available [here](https://fastcomments.com/auth/my-account/get-acct-code) in the FastComments admin area.
+Replace "demo" below with your "tenantId" - available [here](https://fastcomments.com/auth/my-account/api) in the FastComments admin area.
 
 See FastCommentsCommentCountConfig in src/index.tsx for the supported configuration options.
 
