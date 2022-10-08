@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {isEqual} from 'lodash';
 import {FastCommentsCommentCountConfig} from "fastcomments-typescript";
+import {ScriptLoader} from "./script-loader";
 
 enum LoadStatus {
   Started,
@@ -23,6 +24,7 @@ interface WidgetInstance {
 export class FastCommentsCommentCountWidget extends React.Component<FastCommentsCommentCountConfig, FastCommentsState> {
 
   lastWidgetInstance: WidgetInstance | null;
+  static widgetLoader: ScriptLoader = new ScriptLoader();
 
   constructor(props: FastCommentsCommentCountConfig) {
     super(props);
@@ -53,19 +55,6 @@ export class FastCommentsCommentCountWidget extends React.Component<FastComments
     }
   }
 
-  async insertScript(src: string, id: string, parentElement: Element) {
-    return new Promise((resolve, reject) => {
-      const script = window.document.createElement('script');
-      script.async = true;
-      script.src = src;
-      script.id = id;
-      parentElement.appendChild(script);
-
-      script.addEventListener('load', resolve);
-      script.addEventListener('error', reject);
-    });
-  }
-
   async loadInstance() {
     return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
@@ -74,7 +63,7 @@ export class FastCommentsCommentCountWidget extends React.Component<FastComments
             // @ts-ignore
             if (window && !window.FastCommentsUI) {
               const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/widget-comment-count.min.js' : 'https://cdn.fastcomments.com/js/widget-comment-count.min.js';
-              await this.insertScript(src, 'fastcomments-count-widget-script', window.document.body);
+              await FastCommentsCommentCountWidget.widgetLoader.insertScript(src, 'fastcomments-count-widget-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded

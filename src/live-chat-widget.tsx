@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {isEqual} from 'lodash';
 import {FastCommentsLiveChatWidgetConfig} from "fastcomments-typescript";
+import {ScriptLoader} from "./script-loader";
 
 enum LoadStatus {
   Started,
@@ -22,6 +23,7 @@ interface WidgetInstance {
 export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLiveChatWidgetConfig, FastCommentsState> {
 
   lastWidgetInstance: WidgetInstance | null;
+  static widgetLoader: ScriptLoader = new ScriptLoader();
 
   constructor(props: FastCommentsLiveChatWidgetConfig) {
     super(props);
@@ -53,19 +55,6 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
     }
   }
 
-  async insertScript(src: string, id: string, parentElement: Element) {
-    return new Promise((resolve, reject) => {
-      const script = window.document.createElement('script');
-      script.async = true;
-      script.src = src;
-      script.id = id;
-      parentElement.appendChild(script);
-
-      script.addEventListener('load', resolve);
-      script.addEventListener('error', reject);
-    });
-  }
-
   async loadInstance() {
     return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
@@ -74,7 +63,7 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
             // @ts-ignore
             if (window && !window.FastCommentsLiveChat) {
               const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/embed-live-chat.min.js' : 'https://cdn.fastcomments.com/js/embed-live-chat.min.js';
-              await this.insertScript(src, 'fastcomments-live-chat-script', window.document.body);
+              await FastCommentsLiveChatWidget.widgetLoader.insertScript(src, 'fastcomments-live-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded

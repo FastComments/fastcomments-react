@@ -2,6 +2,7 @@ import * as React from 'react'
 import {isEqual, omit} from 'lodash';
 import {FastCommentsImageChatWidgetConfig} from "fastcomments-typescript";
 import {MutableRefObject} from "react";
+import {ScriptLoader} from "./script-loader";
 
 enum LoadStatus {
   Started,
@@ -27,6 +28,7 @@ export interface FastCommentsImageChatWidgetConfigReact extends FastCommentsImag
 export class FastCommentsImageChatWidget extends React.Component<FastCommentsImageChatWidgetConfigReact, FastCommentsState> {
 
   lastWidgetInstance: WidgetInstance | null;
+  static widgetLoader: ScriptLoader = new ScriptLoader();
 
   constructor(props: FastCommentsImageChatWidgetConfigReact) {
     super(props);
@@ -57,19 +59,6 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
     }
   }
 
-  async insertScript(src: string, id: string, parentElement: Element) {
-    return new Promise((resolve, reject) => {
-      const script = window.document.createElement('script');
-      script.async = true;
-      script.src = src;
-      script.id = id;
-      parentElement.appendChild(script);
-
-      script.addEventListener('load', resolve);
-      script.addEventListener('error', reject);
-    });
-  }
-
   async loadInstance() {
     return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
@@ -78,7 +67,7 @@ export class FastCommentsImageChatWidget extends React.Component<FastCommentsIma
             // @ts-ignore
             if (window && !window.FastCommentsImageChat) {
               const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/embed-image-chat.min.js' : 'https://cdn.fastcomments.com/js/embed-image-chat.min.js';
-              await this.insertScript(src, 'fastcomments-image-chat-script', window.document.body);
+              await FastCommentsImageChatWidget.widgetLoader.insertScript(src, 'fastcomments-image-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded

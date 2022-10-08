@@ -1,6 +1,7 @@
 import * as React from 'react'
 import {isEqual} from 'lodash';
 import {FastCommentsCommentWidgetConfig} from "fastcomments-typescript";
+import {ScriptLoader} from "./script-loader";
 
 enum LoadStatus {
   Started,
@@ -27,6 +28,7 @@ export interface FastCommentsUserActivityFeedWidgetProps extends FastCommentsCom
 export class FastCommentsUserActivityFeedWidget extends React.Component<FastCommentsUserActivityFeedWidgetProps, FastCommentsState> {
 
   lastWidgetInstance: WidgetInstance | null;
+  static widgetLoader: ScriptLoader = new ScriptLoader();
 
   constructor(props: FastCommentsUserActivityFeedWidgetProps) {
     super(props);
@@ -57,19 +59,6 @@ export class FastCommentsUserActivityFeedWidget extends React.Component<FastComm
     }
   }
 
-  async insertScript(src: string, id: string, parentElement: Element) {
-    return new Promise((resolve, reject) => {
-      const script = window.document.createElement('script');
-      script.async = true;
-      script.src = src;
-      script.id = id;
-      parentElement.appendChild(script);
-
-      script.addEventListener('load', resolve);
-      script.addEventListener('error', reject);
-    });
-  }
-
   async loadInstance() {
     return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
@@ -78,7 +67,7 @@ export class FastCommentsUserActivityFeedWidget extends React.Component<FastComm
             // @ts-ignore
             if (window && !window.FastCommentsUserActivity) {
               const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/embed-user-activity.min.js' : 'https://cdn.fastcomments.com/js/embed-user-activity.min.js';
-              await this.insertScript(src, 'fastcomments-widget-script', window.document.body);
+              await FastCommentsUserActivityFeedWidget.widgetLoader.insertScript(src, 'fastcomments-widget-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded

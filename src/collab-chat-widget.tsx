@@ -2,6 +2,7 @@ import * as React from 'react'
 import {isEqual, omit} from 'lodash';
 import {FastCommentsCollabChatWidgetConfig} from "fastcomments-typescript";
 import {MutableRefObject} from "react";
+import {ScriptLoader} from "./script-loader";
 
 enum LoadStatus {
   Started,
@@ -27,6 +28,7 @@ export interface FastCommentsCollabChatWidgetConfigReact extends FastCommentsCol
 export class FastCommentsCollabChatWidget extends React.Component<FastCommentsCollabChatWidgetConfigReact, FastCommentsState> {
 
   lastWidgetInstance: WidgetInstance | null;
+  static widgetLoader: ScriptLoader = new ScriptLoader();
 
   constructor(props: FastCommentsCollabChatWidgetConfigReact) {
     super(props);
@@ -57,19 +59,6 @@ export class FastCommentsCollabChatWidget extends React.Component<FastCommentsCo
     }
   }
 
-  async insertScript(src: string, id: string, parentElement: Element) {
-    return new Promise((resolve, reject) => {
-      const script = window.document.createElement('script');
-      script.async = true;
-      script.src = src;
-      script.id = id;
-      parentElement.appendChild(script);
-
-      script.addEventListener('load', resolve);
-      script.addEventListener('error', reject);
-    });
-  }
-
   async loadInstance() {
     return new Promise<void>(async (resolve, reject) => {
       switch (this.state.status) {
@@ -78,7 +67,7 @@ export class FastCommentsCollabChatWidget extends React.Component<FastCommentsCo
             // @ts-ignore
             if (window && !window.FastCommentsCollabChat) {
               const src = this.props.region === 'eu' ? 'https://cdn-eu.fastcomments.com/js/embed-collab-chat.min.js' : 'https://cdn.fastcomments.com/js/embed-collab-chat.min.js';
-              await this.insertScript(src, 'fastcomments-collab-chat-script', window.document.body);
+              await FastCommentsCollabChatWidget.widgetLoader.insertScript(src, 'fastcomments-collab-chat-script', window.document.body);
             }
             this.setState({
               status: LoadStatus.ScriptLoaded
