@@ -75,10 +75,12 @@ class Example extends Component {
 
 ### Native
 
-For React Native, see [fastcomments-react-native](https://github.com/FastComments/fastcomments-react-native).
+For a completely native implementation of FastComments, see [fastcomments-react-native-sdk](https://github.com/FastComments/fastcomments-react-native-sdk).
+
+For a React Native wrapper of this library, using a webview, see [fastcomments-react-native](https://github.com/FastComments/fastcomments-react-native).
 
 ## Contributing
-Please checkout our [contribution guidelines](CONTRIBUTING.md) before starting on a change. Remember to communicate first!
+Please check out our [contribution guidelines](CONTRIBUTING.md) before starting on a change. Remember to communicate first!
 
 ## License
 
