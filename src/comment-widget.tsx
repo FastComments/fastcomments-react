@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {isEqual} from 'lodash';
-import {FastCommentsCommentWidgetConfig} from "fastcomments-typescript";
+import {FastCommentsCommentWidgetConfig, FastCommentsSSOUserData} from "fastcomments-typescript";
 import {ScriptLoader} from "./script-loader";
 
 enum LoadStatus {
@@ -15,9 +15,15 @@ interface FastCommentsState {
   widgetId: string | null
 }
 
+interface OpenProfileOptions {
+  userId: string
+}
+
 interface WidgetInstance {
   destroy: Function,
-  update: Function
+  update: Function,
+  updateUser: (user: FastCommentsSSOUserData) => void,
+  openProfile: (options: OpenProfileOptions) => void
 }
 
 export class FastCommentsCommentWidget extends React.Component<FastCommentsCommentWidgetConfig, FastCommentsState> {
