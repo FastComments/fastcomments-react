@@ -21,6 +21,22 @@ const App = () => {
       console.log('Callback: onOpenProfile', userId);
       return false;
     }}
+    onUserBlocked={(userId, comment, isBlocked) => {
+      console.log('Callback: onUserBlocked', userId, comment, isBlocked);
+    }}
+    onCommentFlagged={(userId, comment, isFlagged) => {
+      console.log('Callback: onCommentFlagged', userId, comment, isFlagged);
+    }}
+    onCommentEdited={(userId, comment) => {
+      console.log('Callback: onCommentEdited', userId, comment);
+    }}
+    onCommentDeleted={(userId, comment) => {
+      console.log('Callback: onCommentDeleted', userId, comment);
+    }}
+    onCommentSubmitStart={(comment, continueSubmitFn, _cancelFn) => {
+      console.log('Callback: onCommentSubmitStart', comment, continueSubmitFn);
+      continueSubmitFn(); // call this when to continue submitting. can use async.
+    }}
   />
 }
 
