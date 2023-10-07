@@ -4,7 +4,7 @@ import {FastCommentsSSO} from 'fastcomments-typescript/src/fast-comments-comment
 
 // this contains an object with userDataJSONBase64, which is a base64 version of FastCommentsSSOUserData
 async function getLoggedInUserInfo(): Promise<Pick<FastCommentsSSO, 'userDataJSONBase64' | 'verificationHash' | 'timestamp'>> {
-  // example service with server-side code here: https://github.com/FastComments/fastcomments-code-examples/tree/master/sso/nodejs
+  // example service with server-side code here: https://github.com/FastComments/fastcomments-code-examples/tree/master/sso/node-express
   // start and run this example to make this component work.
   // Replace this with your own API call to get the logged-in user.
   const response = await fetch('http://localhost:3003/sso-user-info', {
