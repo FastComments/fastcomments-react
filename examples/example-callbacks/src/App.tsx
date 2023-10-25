@@ -17,8 +17,8 @@ const App = () => {
     onReplySuccess={(comment) => console.log('Callback: onReplySuccess', comment)}
     onVoteSuccess={(comment, voteId, direction, status) => console.log('Callback: onVoteSuccess', comment, voteId, direction, status)}
     onImageClicked={(src) => console.log('Callback: onImageClicked', src)}
-    onOpenProfile={(userId) => {
-      console.log('Callback: onOpenProfile', userId);
+    onOpenProfile={(context) => {
+      console.log('Callback: onOpenProfile', context);
       return false;
     }}
     onUserBlocked={(userId, comment, isBlocked) => {
