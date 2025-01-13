@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {FastCommentsCommentWidget} from 'fastcomments-react';
-import {FastCommentsSSO} from 'fastcomments-typescript/src/fast-comments-comment-widget-config';
+import {FastCommentsSSO} from 'fastcomments-typescript';
 
 // this contains an object with userDataJSONBase64, which is a base64 version of FastCommentsSSOUserData
 async function getLoggedInUserInfo(): Promise<Pick<FastCommentsSSO, 'userDataJSONBase64' | 'verificationHash' | 'timestamp'>> {
