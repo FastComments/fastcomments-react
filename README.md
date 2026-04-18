@@ -18,9 +18,21 @@ npm install --save fastcomments-react
 yarn add fastcomments-react
 ```
 
+## Live Showcase
+
+To see every widget and flow running locally against the public `demo` tenant, clone the repo and run:
+
+```bash
+cd examples/example-showcase
+npm install
+npm start
+```
+
+Each widget/flow has its own view under `examples/example-showcase/src/views/` that you can copy straight into your own React app.
+
 ## Examples
 
-You'll find examples for various use cases (dark mode, pagination, etc) in the examples folder. Each example can be setup with `npm install` and started with `npm run start`.
+Individual use cases (dark mode, pagination, etc.) live in their own folders under `examples/`. Each can be set up with `npm install` and started with `npm start`.
 
 ## Usage
 
@@ -85,3 +97,7 @@ Please check out our [contribution guidelines](CONTRIBUTING.md) before starting 
 ## License
 
 MIT © [winrid](https://github.com/winrid)
+
+## Maintenance Status
+
+These components are wrappers around our core VanillaJS components. We can automatically update these components (fix bugs, add features) without publishing this library, so while it may not be published for a while that does not mean FastComments is not under active development! Feel free to check [our blog](https://blog.fastcomments.com/) for updates. Breaking API changes or features will never be shipped to the underlying core library without a version bump in this library.

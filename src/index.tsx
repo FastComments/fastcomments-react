@@ -4,5 +4,8 @@ export * from './comment-widget';
 export * from './collab-chat-widget';
 export * from './image-chat-widget';
 export * from './live-chat-widget';
+export * from './recent-comments-widget';
+export * from './recent-discussions-widget';
 export * from './reviews-summary-widget';
+export * from './top-pages-widget';
 export * from './user-activity-feed-widget';
