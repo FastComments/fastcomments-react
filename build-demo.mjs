@@ -17,6 +17,7 @@ const sh = (cmd, cwd = ROOT) => {
 };
 
 sh('npm ci');
+sh('npm ci', DEMO_DIR);
 sh('npm run build', DEMO_DIR);
 
 rmSync(OUT, { recursive: true, force: true });
