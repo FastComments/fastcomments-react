@@ -34,7 +34,6 @@ export class FastCommentsLiveChatWidget extends React.Component<FastCommentsLive
   }
 
   componentDidMount() {
-    console.log('refs', this.refs);
     this.setState({
       status: LoadStatus.Started,
       widgetId: `fastcomments-live-chat-widget-${Math.random()}-${Date.now()}`
