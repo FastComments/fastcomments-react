@@ -4,6 +4,13 @@
 # dependencies
 node_modules
 
+# Example lockfiles are not committed: examples share the root node_modules via
+# file: links, so the root package-lock.json is the single source of truth.
+# Exception: example-showcase is built by build-demo.mjs with `npm ci`, so its
+# (registry-free, file:-only) lockfile is committed for reproducible demo builds.
+examples/*/package-lock.json
+!examples/example-showcase/package-lock.json
+
 # builds
 build
 dist

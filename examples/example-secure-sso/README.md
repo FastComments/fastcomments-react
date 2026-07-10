@@ -7,4 +7,4 @@ This is linked to the fastcomments-react package in the parent directory for dev
 ### Running
 
 First, you'll want to run the corresponding backend service for this example to work: https://github.com/FastComments/fastcomments-code-examples/tree/master/sso/nodejs
-Then you can run `npm install` and then `npm start` to run this example.
+Then you can run `npm install` and then `npm run dev` to run this example.

@@ -7,4 +7,4 @@ This is linked to the fastcomments-react package in the parent directory for dev
 
 ### Running
 
-You can run `npm install` and then `npm start` to run this example.
+You can run `npm install` and then `npm run dev` to run this example.
