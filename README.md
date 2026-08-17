@@ -6,7 +6,7 @@
 
 ## Live Demo
 
-Try every widget live at <https://fastcomments.com/commenting-system-for-react>.
+Try every widget live at <https://fastcomments.com/commenting-system-for-react/>.
 
 ## Installation
 
