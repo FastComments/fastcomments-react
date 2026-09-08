@@ -4,7 +4,10 @@
   "description": "A React library for FastComments",
   "author": "winrid",
   "license": "MIT",
-  "repository": "fastcomments/fastcomments-react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastcomments/fastcomments-react.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
