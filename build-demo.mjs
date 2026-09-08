@@ -17,6 +17,7 @@ const sh = (cmd, cwd = ROOT) => {
 };
 
 sh('npm ci');
+sh('npm run build');
 sh('npm ci', DEMO_DIR);
 sh('npm run build', DEMO_DIR);
 

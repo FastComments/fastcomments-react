@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsup",
     "start": "tsup --watch",
-    "prepare": "run-s build",
+    "prepack": "run-s build",
     "test": "run-s test:unit test:build",
     "test:unit": "vitest run",
     "test:build": "run-s build",
